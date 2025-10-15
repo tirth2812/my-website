@@ -15,7 +15,8 @@
         --text-light: #e0e0e0;
         --accent: #ffffff;
     }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--primary-black); color: var(--text-white); line-height: 1.6; overflow-x: hidden; }
+    html, body { height: 100%; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--primary-black); color: var(--text-white); line-height: 1.6; overflow-x: hidden; min-height: 100vh; }
     body::before { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: repeating-linear-gradient(45deg,#000000 0px,#000000 20px,#1a1a1a 20px,#1a1a1a 40px); pointer-events: none; z-index: -1; }
     body::after { content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.03) 0%, transparent 50%); pointer-events: none; z-index: -1;}
     nav { background: var(--primary-black); padding: 1.5rem 2rem; position: sticky; top: 0; z-index: 1000; border-bottom: 3px solid var(--text-white); display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(10px);}
@@ -40,7 +41,6 @@
     h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 150px; height: 4px; background: var(--text-white); border-radius: 0;}
     .about { background: var(--primary-black); border-radius: 0; padding: 4rem; border: 3px solid var(--text-white); backdrop-filter: blur(10px);}
     .about p { font-size: 1.1rem; line-height: 2; color: var(--text-light); margin-bottom: 2rem;}
-    /* FINAL Projects Section -- fully centered, super-wide, responsive, no overflow */
     .projects-grid {
         display: flex;
         flex-direction: column;
@@ -97,25 +97,157 @@
     .experience-item ul { list-style: none; padding-left: 0;}
     .experience-item li { color: var(--text-light); margin-bottom: 1rem; padding-left: 2rem; position: relative;}
     .experience-item li::before { content: '✓'; position: absolute; left: 0; color: var(--text-white); font-weight: bold; font-size: 1.2rem;}
-    .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;}
-    .skill-category { background: var(--primary-black); padding: 3rem; border-radius: 0; border: 3px solid var(--text-white); transition: all 0.3s;}
-    .skill-category:hover { border-color: var(--text-white); transform: translateY(-8px); box-shadow: 0 15px 40px rgba(255, 255, 255, 0.1), inset 0 0 15px rgba(255, 255, 255, 0.03);}
-    .skill-category h3 { color: var(--text-white); margin-bottom: 1.5rem; font-size: 1.3rem; font-weight: 800; letter-spacing: 1px;}
-    .skill-list { display: flex; flex-wrap: wrap; gap: 1rem;}
-    .skill-tag { background: var(--primary-black); color: var(--text-white); padding: 0.7rem 1.3rem; border-radius: 0; border: 2px solid var(--text-white); font-size: 0.85rem; transition: all 0.3s; font-weight: 700;}
-    .skill-tag:hover { background: var(--text-white); color: var(--primary-black);}
-    .contact-section { background: var(--primary-black); text-align: center; padding: 5rem 3rem; border-radius: 0; border: 3px solid var(--text-white);}
-    .contact-section h2 { margin-bottom: 3rem;}
-    .contact-info { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-bottom: 3rem;}
-    .contact-item { display: flex; align-items: center; gap: 1rem; color: var(--text-white);}
-    .contact-item i { font-size: 1.5rem; color: var(--text-white);}
-    .contact-item a { color: var(--text-white); text-decoration: none; transition: all 0.3s; font-weight: 700;}
-    .contact-item a:hover { text-decoration: underline;}
-    .social-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 3rem;}
-    .social-links a { width: 60px; height: 60px; background: var(--primary-black); border: 3px solid var(--text-white); border-radius: 0; display: flex; align-items: center; justify-content: center; color: var(--text-white); text-decoration: none; transition: all 0.3s; font-size: 2rem;}
-    .google-form-embed { max-width: 640px; margin: 0 auto;}
-    .google-form-embed iframe { width: 100%;}
-    footer { background: var(--primary-black); text-align: center; padding: 3rem 2rem; border-top: 3px solid var(--text-white); color: var(--text-light);}
+    .skills-flexgrid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2.5rem;
+        width: 100vw;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        padding-bottom: 2rem;
+    }
+    .skills-box {
+        width: 90vw;
+        max-width: 1600px;
+        background: var(--primary-black);
+        border: 4px solid var(--text-white);
+        border-radius: 24px;
+        margin: 0 auto;
+        padding: 1.6rem 2.2rem 1.6rem 2.2rem;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .skills-box h3 {
+        font-size: 1.45rem;
+        margin-bottom: 1.2rem;
+        letter-spacing: 1px;
+        text-align: center;
+        font-weight: 900;
+        color: var(--text-white);
+    }
+    .skill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+    .skill-tag {
+        background: var(--primary-black);
+        color: var(--text-white);
+        padding: 0.7rem 1.6rem;
+        border-radius: 0.5rem;
+        border: 2px solid var(--text-white);
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+        transition: all 0.3s;
+        cursor: default;
+        text-align: center;
+        white-space: nowrap;
+    }
+    .skill-tag:hover {
+        background: var(--text-white);
+        color: var(--primary-black);
+    }
+    @media (max-width: 1000px) {
+        .skills-box { width: 97vw; max-width: 100vw; padding: 1rem 0.7rem;}
+        .skill-tag { font-size: 0.92rem; padding: 0.55rem 0.9rem;}
+    }
+    .contact-section {
+        background: var(--primary-black);
+        text-align: center;
+        padding: 3rem 3rem 1.5rem 3rem !important;
+        border-radius: 0;
+        border: 3px solid var(--text-white);
+        margin-bottom: 0 !important;
+    }
+    .contact-icons-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        margin: 0 0 2.2rem 0;
+        flex-wrap: wrap;
+    }
+    .contact-icon-block {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--text-white);
+        font-size: 1.25rem;
+        font-weight: 700;
+    }
+    .contact-icon-block i {
+        font-size: 2rem;
+        color: var(--text-white);
+    }
+    .contact-icon-block a {
+        color: var(--text-white);
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.23rem;
+    }
+    .contact-icon-block a:hover { text-decoration: underline; }
+    .contact-social-row {
+        display: flex;
+        justify-content: center;
+        gap: 1.8rem;
+        margin-bottom: 1.4rem;
+    }
+    .social-icon-btn {
+        width: 80px;
+        height: 80px;
+        border: 3px solid var(--text-white);
+        border-radius: 0.4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-white);
+        background: transparent;
+        font-size: 2.7rem;
+        transition: all 0.18s;
+        margin-bottom: 0.4rem;
+        text-decoration: none;
+    }
+    .social-icon-btn:hover {
+        background: var(--text-white);
+        color: var(--primary-black);
+        border-color: var(--text-white);
+    }
+    .google-form-embed {
+        max-width: 900px;
+        margin: 0 auto !important;
+        padding-bottom: 0 !important;
+    }
+    .google-form-embed iframe {
+        width: 100%;
+        max-width: 900px;
+        height: 1100px;
+        min-height: 600px;
+        display: block;
+        border: none;
+        overflow: hidden;
+        background: transparent;
+        margin: 0 auto 0 auto;
+    }
+    @media (max-width: 800px) {
+        .contact-icons-row { flex-direction: column; gap: 1.7rem; }
+        .social-icon-btn { width: 56px; height: 56px; font-size: 1.7rem;}
+        .google-form-embed iframe { height: 1250px;}
+    }
+    footer {
+        background: var(--primary-black);
+        text-align: center;
+        padding: 1rem 2rem 1rem 2rem;
+        border-top: 3px solid var(--text-white);
+        color: var(--text-light);
+        margin-top: 0 !important;
+    }
 </style>
 </head>
 <body>
@@ -216,196 +348,141 @@
     </section>
 
     <!-- Skills Section -->
-<section id="skills">
-    <h2>Technical Skills</h2>
-    <div class="skills-flexgrid">
-        <div class="skills-box">
-            <h3>Programming Languages</h3>
-            <div class="skill-list">
-                <span class="skill-tag">C</span>
-                <span class="skill-tag">C++</span>
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">Java</span>
-                <span class="skill-tag">Verilog</span>
-                <span class="skill-tag">Assembly</span>
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills-flexgrid">
+            <div class="skills-box">
+                <h3>Programming Languages</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">C</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">Verilog</span>
+                    <span class="skill-tag">Assembly</span>
+                </div>
+            </div>
+            <div class="skills-box">
+                <h3>Microcontrollers & Platforms</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">STM32 Discovery</span>
+                    <span class="skill-tag">STM32 Nucleo</span>
+                    <span class="skill-tag">Nuvoton</span>
+                    <span class="skill-tag">Arduino</span>
+                    <span class="skill-tag">Raspberry Pi</span>
+                    <span class="skill-tag">ARM Cortex</span>
+                </div>
+            </div>
+            <div class="skills-box">
+                <h3>Embedded Systems & RTOS</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Computer Architecture</span>
+                    <span class="skill-tag">GPIO</span>
+                    <span class="skill-tag">PWM</span>
+                    <span class="skill-tag">Timers</span>
+                    <span class="skill-tag">ADC</span>
+                    <span class="skill-tag">I2C</span>
+                    <span class="skill-tag">SPI</span>
+                    <span class="skill-tag">UART</span>
+                    <span class="skill-tag">EEPROM</span>
+                    <span class="skill-tag">RTOS</span>
+                    <span class="skill-tag">RTOS Fundamentals</span>
+                    <span class="skill-tag">TCP/IP</span>
+                    <span class="skill-tag">Firmware Design</span>
+                    <span class="skill-tag">IoT</span>
+                    <span class="skill-tag">Linux</span>
+                    <span class="skill-tag">Embedded Code</span>
+                    <span class="skill-tag">Operating Systems</span>
+                    <span class="skill-tag">Debugging Procedures</span>
+                    <span class="skill-tag">Troubleshooting</span>
+                    <span class="skill-tag">Arduino</span>
+                    <span class="skill-tag">STM32</span>
+                    <span class="skill-tag">Object-Oriented Programming</span>
+                    <span class="skill-tag">Systems Programming</span>
+                    <span class="skill-tag">Algorithm Development</span>
+                    <span class="skill-tag">Data Structures</span>
+                </div>
+            </div>
+            <div class="skills-box">
+                <h3>Tools & Software</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Keil uVision</span>
+                    <span class="skill-tag">Xilinx Vivado</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">MATLAB</span>
+                    <span class="skill-tag">VS Code</span>
+                </div>
+            </div>
+            <div class="skills-box">
+                <h3>Professional & Interpersonal Skills</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Problem-Solving</span>
+                    <span class="skill-tag">Software Engineering</span>
+                    <span class="skill-tag">Optimization</span>
+                    <span class="skill-tag">Low-Level System Design</span>
+                    <span class="skill-tag">Algorithmic Thinking</span>
+                    <span class="skill-tag">Algorithm Development</span>
+                    <span class="skill-tag">Independent Projects</span>
+                    <span class="skill-tag">Team Collaboration</span>
+                    <span class="skill-tag">Cross-Functional Collaboration</span>
+                    <span class="skill-tag">Teamwork</span>
+                    <span class="skill-tag">Professionalism</span>
+                    <span class="skill-tag">Time Management</span>
+                    <span class="skill-tag">Organizational Skills</span>
+                    <span class="skill-tag">Ability to Work Independently</span>
+                    <span class="skill-tag">Growth Mindset</span>
+                    <span class="skill-tag">Detail-Oriented</span>
+                    <span class="skill-tag">Analytical Skills</span>
+                    <span class="skill-tag">Community Building</span>
+                    <span class="skill-tag">Team Building</span>
+                    <span class="skill-tag">Interpersonal Skills</span>
+                    <span class="skill-tag">Verbal Communication</span>
+                    <span class="skill-tag">Written Communication</span>
+                    <span class="skill-tag">Written and Verbal Communication</span>
+                </div>
             </div>
         </div>
-        <div class="skills-box">
-            <h3>Microcontrollers & Platforms</h3>
-            <div class="skill-list">
-                <span class="skill-tag">STM32 Discovery</span>
-                <span class="skill-tag">STM32 Nucleo</span>
-                <span class="skill-tag">Nuvoton</span>
-                <span class="skill-tag">Arduino</span>
-                <span class="skill-tag">Raspberry Pi</span>
-                <span class="skill-tag">ARM Cortex</span>
-            </div>
-        </div>
-        <div class="skills-box">
-            <h3>Embedded Systems & RTOS</h3>
-            <div class="skill-list">
-                <span class="skill-tag">Computer Architecture</span>
-                <span class="skill-tag">GPIO</span>
-                <span class="skill-tag">PWM</span>
-                <span class="skill-tag">Timers</span>
-                <span class="skill-tag">ADC</span>
-                <span class="skill-tag">I2C</span>
-                <span class="skill-tag">SPI</span>
-                <span class="skill-tag">UART</span>
-                <span class="skill-tag">EEPROM</span>
-                <span class="skill-tag">RTOS</span>
-                <span class="skill-tag">RTOS Fundamentals</span>
-                <span class="skill-tag">TCP/IP</span>
-                <span class="skill-tag">Firmware Design</span>
-                <span class="skill-tag">IoT</span>
-                <span class="skill-tag">Linux</span>
-                <span class="skill-tag">Embedded Code</span>
-                <span class="skill-tag">Operating Systems</span>
-                <span class="skill-tag">Debugging Procedures</span>
-                <span class="skill-tag">Troubleshooting</span>
-                <span class="skill-tag">Arduino</span>
-                <span class="skill-tag">STM32</span>
-                <span class="skill-tag">Object-Oriented Programming</span>
-                <span class="skill-tag">Systems Programming</span>
-                <span class="skill-tag">Algorithm Development</span>
-                <span class="skill-tag">Data Structures</span>
-            </div>
-        </div>
-        <div class="skills-box">
-            <h3>Tools & Software</h3>
-            <div class="skill-list">
-                <span class="skill-tag">Keil uVision</span>
-                <span class="skill-tag">Xilinx Vivado</span>
-                <span class="skill-tag">Git</span>
-                <span class="skill-tag">MATLAB</span>
-                <span class="skill-tag">VS Code</span>
-            </div>
-        </div>
-        <div class="skills-box">
-            <h3>Professional & Interpersonal Skills</h3>
-            <div class="skill-list">
-                <span class="skill-tag">Problem-Solving</span>
-                <span class="skill-tag">Software Engineering</span>
-                <span class="skill-tag">Optimization</span>
-                <span class="skill-tag">Low-Level System Design</span>
-                <span class="skill-tag">Algorithmic Thinking</span>
-                <span class="skill-tag">Algorithm Development</span>
-                <span class="skill-tag">Independent Projects</span>
-                <span class="skill-tag">Team Collaboration</span>
-                <span class="skill-tag">Cross-Functional Collaboration</span>
-                <span class="skill-tag">Teamwork</span>
-                <span class="skill-tag">Professionalism</span>
-                <span class="skill-tag">Time Management</span>
-                <span class="skill-tag">Organizational Skills</span>
-                <span class="skill-tag">Ability to Work Independently</span>
-                <span class="skill-tag">Growth Mindset</span>
-                <span class="skill-tag">Detail-Oriented</span>
-                <span class="skill-tag">Analytical Skills</span>
-                <span class="skill-tag">Community Building</span>
-                <span class="skill-tag">Team Building</span>
-                <span class="skill-tag">Interpersonal Skills</span>
-                <span class="skill-tag">Verbal Communication</span>
-                <span class="skill-tag">Written Communication</span>
-                <span class="skill-tag">Written and Verbal Communication</span>
-            </div>
-        </div>
-    </div>
-</section>
-<style>
-.skills-flexgrid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2.5rem;
-    width: 100vw;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    padding-bottom: 2rem;
-}
-.skills-box {
-    width: 90vw;
-    max-width: 1600px;
-    background: var(--primary-black);
-    border: 4px solid var(--text-white);
-    border-radius: 24px;
-    margin: 0 auto;
-    padding: 1.6rem 2.2rem 1.6rem 2.2rem;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.skills-box h3 {
-    font-size: 1.45rem;
-    margin-bottom: 1.2rem;
-    letter-spacing: 1px;
-    text-align: center;
-    font-weight: 900;
-    color: var(--text-white);
-}
-.skill-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-.skill-tag {
-    background: var(--primary-black);
-    color: var(--text-white);
-    padding: 0.7rem 1.6rem;
-    border-radius: 0.5rem;
-    border: 2px solid var(--text-white);
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-    transition: all 0.3s;
-    cursor: default;
-    text-align: center;
-    white-space: nowrap;
-}
-.skill-tag:hover {
-    background: var(--text-white);
-    color: var(--primary-black);
-}
-@media (max-width: 1000px) {
-    .skills-box { width: 97vw; max-width: 100vw; padding: 1rem 0.7rem;}
-    .skill-tag { font-size: 0.92rem; padding: 0.55rem 0.9rem;}
-}
-</style>
+    </section>
 
-
-    <!-- Contact Section -->
+    <!-- Contact Section: first info/social, then the Google Form last -->
     <section id="contact">
         <div class="contact-section">
-            <h2>Let's Connect</h2>
-            <div class="contact-info">
-                <div class="contact-item">
+            <div class="contact-icons-row">
+                <div class="contact-icon-block">
                     <i class="fas fa-map-marker-alt"></i>
                     <span>Pomona, CA, USA</span>
                 </div>
-                <div class="contact-item">
+                <div class="contact-icon-block">
                     <i class="fas fa-envelope"></i>
                     <a href="mailto:tirth.p2812@gmail.com">tirth.p2812@gmail.com</a>
                 </div>
-                <div class="contact-item">
+                <div class="contact-icon-block">
                     <i class="fas fa-phone"></i>
                     <a href="tel:+19097620503">+1 (909) 762-0503</a>
                 </div>
             </div>
-            <div class="social-links">
-                <a href="https://github.com/tirth2812" target="_blank" title="GitHub">
+            <div class="contact-social-row">
+                <a href="https://github.com/tirth2812" target="_blank" title="GitHub" class="social-icon-btn">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/tirth-patel-33b167285" target="_blank" title="LinkedIn">
+                <a href="https://www.linkedin.com/in/tirth-patel-33b167285" target="_blank" title="LinkedIn" class="social-icon-btn">
                     <i class="fab fa-linkedin"></i>
                 </a>
             </div>
             <div class="google-form-embed">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdOKIlFQFFHpzUNCHuoOBAqm6ljPn01ZrFawd0f-IewQ8ckWg/viewform?embedded=true" width="100%" height="821" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                <iframe 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSdOKIlFQFFHpzUNCHuoOBAqm6ljPn01ZrFawd0f-IewQ8ckWg/viewform?embedded=true"
+                    width="100%"
+                    height="1100"
+                    frameborder="0"
+                    marginheight="0"
+                    marginwidth="0"
+                    style="overflow:hidden; display:block; background:transparent;"
+                    scrolling="no">
+                    Loading…
+                </iframe>
             </div>
-            <p style="color: var(--text-light); margin-top: 2rem; font-size: 1.1rem;">
+            <p style="color: var(--text-light); margin-top: 1.2rem; font-size: 1.1rem;">
                 Every experiment leads to growth and every rejection is a chance to create something greater - thank you for visiting! 🌱🔬
             </p>
         </div>
@@ -413,7 +490,7 @@
 
     <footer>
         <p style="font-weight: 700;"></p>
-        <p style="margin-top: 1rem; font-size: 0.9rem;">© 2025 Tirth Patel. All rights reserved.</p>
+        <p style="margin-top: 0.8rem; font-size: 0.9rem;">© 2025 Tirth Patel. All rights reserved.</p>
     </footer>
 
     <script>
