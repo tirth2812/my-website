@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Driving Licence Controlled Smart Vehicle - Tirth Patel</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #000;
+    color: #fff;
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 1rem 2rem;
+  }
+  a.back-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    display: inline-block;
+  }
+  a.back-link:hover {
+    text-decoration: underline;
+  }
+  h1 {
+    font-weight: 900;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  p, ul {
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+  ul {
+    margin-top: 1rem;
+  }
+</style>
+</head>
+<body>
+  <a href="index.html" class="back-link">← Back to Projects</a>
+  <h1>Driving Licence Controlled Smart Vehicle</h1>
+  <p><strong>Duration:</strong> Jun 2022 – Jun 2024</p>
+  <p><strong>Repo:</strong> <a href="https://github.com/tirth2812/driving_licence_controlled_smart_vehicle" target="_blank" style="color: #00aaff;">github.com/tirth2812/driving_licence_controlled_smart_vehicle</a></p>
+
+  <h2>Overview</h2>
+  <p>Advanced driver verification system that authenticates the driver before enabling vehicle ignition. Integrated RFID, fingerprint, and facial recognition technologies to ensure only licensed users can operate the vehicle.</p>
+
+  <h2>Authentication Workflow</h2>
+  <ul>
+    <li>Prompt for validation on unlock → scan RFID or fingerprint</li>
+    <li>✅ On success: ignition enabled and system switches to media player UI.</li>
+    <li>❌ On failure: ignition remains disabled and alert mechanism is triggered.</li>
+  </ul>
+
+  <h2>Hardware</h2>
+  <ul>
+    <li>Hardware: Raspberry Pi, RC522/MFRC522 RFID reader, R305 fingerprint sensor, LED indicators, media player interface.</li>
+  </ul>
+
+  <h2>My Contributions</h2>
+  <ul>
+    <li>Assembled and wired the entire hardware system, planning module-to-controller connections and ensuring reliable signal integrity.</li>
+    <li>Mapped and verified all communication protocols (SPI for RFID, UART for fingerprint/GSM/GPS, I²C for LCD) and tested each device individually before final integration.</li>
+    <li>Coordinated dashboard-level hardware fitting, prepared wiring layout, and validated communication across the system.</li>
+  </ul>
+</body>
+</html>

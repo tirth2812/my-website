@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pulse Generator - Tirth Patel</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #000;
+    color: #fff;
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 1rem 2rem;
+  }
+  a.back-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    display: inline-block;
+  }
+  a.back-link:hover {
+    text-decoration: underline;
+  }
+  h1 {
+    font-weight: 900;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  p, ul {
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+  ul {
+    margin-top: 1rem;
+  }
+</style>
+</head>
+<body>
+  <a href="index.html" class="back-link">← Back to Projects</a>
+  <h1>Pulse Generator</h1>
+  <p><strong>Duration:</strong> May 2024 – Jun 2024</p>
+  <p><strong>Repo:</strong> <a href="https://github.com/tirth2812/Pulse_generator" target="_blank" style="color: #00aaff;">github.com/tirth2812/Pulse_generator</a></p>
+
+  <h2>Overview</h2>
+  <p>This was a solo project where I built an embedded pulse generator using the Nuvoton M0518 microcontroller. The system allows the user to select and control pulse speeds (RPM) for three independent outputs through a keypad and LCD menu. It uses a state machine for menu navigation, generates precise pulse signals using timers, and stores RPM values in EEPROM for persistence.</p>
+
+  <h2>Features</h2>
+  <ul>
+    <li>Set and control RPM for three independent pulse channels (P, M, and K).</li>
+    <li>Persistent storage of RPM values in AT24C04 (I²C) EEPROM.</li>
+    <li>Alternating pulse signals generated on GPIO outputs using Timer1 interrupt.</li>
+    <li>Character LCD interface for displaying menus and RPM values.</li>
+    <li>4-key user interface (Esc, Up, Down, Enter) for navigation and input.</li>
+    <li>LED indicators showing active channels and output state.</li>
+    <li>This project/module is widely used in testing purposes and in the embroidery industry.</li>
+  </ul>
+
+  <h2>Hardware</h2>
+  <ul>
+    <li>MCU: Nuvoton M0518 Series.</li>
+    <li>Peripherals: Character LCD (GPIO), AT24C04 EEPROM (I²C), 4 physical keys, 3 status LEDs, relay-driven outputs on OP3 and OP4.</li>
+    <li>Timer: Timer1 used for square-wave pulse generation.</li>
+  </ul>
+
+  <h2>Work Done</h2>
+  <ul>
+    <li>Programmed the M0518 in C to implement a state machine-based menu system for selecting channels, setting RPM values, and activating outputs.</li>
+    <li>Implemented EEPROM routines for saving and retrieving RPM values to ensure persistence after restart.</li>
+    <li>Built the keypad input handler to allow digit-by-digit RPM entry and menu navigation.</li>
+    <li>Assembled and tested the complete system independently, validating functionality with LEDs, LCD feedback, and oscilloscope pulse measurements.</li>
+  </ul>
+</body>
+</html>

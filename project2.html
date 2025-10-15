@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Autoclave Heater Controller - Tirth Patel</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #000;
+    color: #fff;
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 1rem 2rem;
+  }
+  a.back-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    display: inline-block;
+  }
+  a.back-link:hover {
+    text-decoration: underline;
+  }
+  h1 {
+    font-weight: 900;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  p, ul {
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+  ul {
+    margin-top: 1rem;
+  }
+</style>
+</head>
+<body>
+  <a href="index.html" class="back-link">← Back to Projects</a>
+  <h1>Autoclave — Heater Controller</h1>
+  <p><strong>Duration:</strong> Mar 2024 – Apr 2024</p>
+  <p><strong>Repo:</strong> <a href="https://github.com/tirth2812/Heater_controller" target="_blank" style="color: #00aaff;">github.com/tirth2812/Heater_controller</a></p>
+
+  <h2>Overview</h2>
+  <p>This was a solo project where I built a heater controller using the Nuvoton Mini51 microcontroller. The system allows the user to set a temperature and timer, then controls the heater through a relay using sensor feedback to maintain the desired temperature within ±1 °C calibration and accuracy.</p>
+
+  <h2>Features</h2>
+  <ul>
+    <li>User can set the target temperature and timer through a keypad.</li>
+    <li>Relay-based heater control with safety logic to avoid overheating.</li>
+    <li>3-digit 7-segment display driven by 74HC595 shift registers shows temperature and status.</li>
+    <li>Settings stored in AT24C04 (I²C) EEPROM so they remain after power off.</li>
+    <li>Includes software PWM indicators, open/closed loop detection, and time tracking with memory save logic.</li>
+  </ul>
+
+  <h2>Hardware</h2>
+  <ul>
+    <li>MCU: Nuvoton Mini51 (Mini51ZDE).</li>
+    <li>Peripherals: 3-digit 7-segment display, 74HC595 shift register, AT24C04 EEPROM (I²C), analog temperature sensor (ADC), relay driver, 9-key input, regulated 5V/3.3V power supply.</li>
+  </ul>
+
+  <h2>Work Done</h2>
+  <ul>
+    <li>Programmed the Mini51 in C to read sensor data, update the display, and control the relay for stable heater operation.</li>
+    <li>Implemented calibration routines to achieve ±1 °C precision in temperature measurement and control.</li>
+    <li>Added EEPROM storage so user preferences (temperature and time) are saved even after restart.</li>
+    <li>Integrated I²C for EEPROM, ADC for temperature readings, and relay switching logic for reliable heater control.</li>
+    <li>Assembled and tested the complete system independently, ensuring consistent performance and safe operation.</li>
+  </ul>
+</body>
+</html>
