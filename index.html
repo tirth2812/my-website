@@ -216,10 +216,10 @@
     </section>
 
     <!-- Skills Section -->
-   <section id="skills">
+<section id="skills">
     <h2>Technical Skills</h2>
-    <div class="skills-container">
-        <div class="skill-category">
+    <div class="skills-flexgrid">
+        <div class="skills-box">
             <h3>Programming Languages</h3>
             <div class="skill-list">
                 <span class="skill-tag">C</span>
@@ -230,7 +230,7 @@
                 <span class="skill-tag">Assembly</span>
             </div>
         </div>
-        <div class="skill-category">
+        <div class="skills-box">
             <h3>Microcontrollers & Platforms</h3>
             <div class="skill-list">
                 <span class="skill-tag">STM32 Discovery</span>
@@ -241,7 +241,7 @@
                 <span class="skill-tag">ARM Cortex</span>
             </div>
         </div>
-        <div class="skill-category">
+        <div class="skills-box">
             <h3>Embedded Systems & RTOS</h3>
             <div class="skill-list">
                 <span class="skill-tag">Computer Architecture</span>
@@ -271,7 +271,7 @@
                 <span class="skill-tag">Data Structures</span>
             </div>
         </div>
-        <div class="skill-category">
+        <div class="skills-box">
             <h3>Tools & Software</h3>
             <div class="skill-list">
                 <span class="skill-tag">Keil uVision</span>
@@ -281,7 +281,7 @@
                 <span class="skill-tag">VS Code</span>
             </div>
         </div>
-        <div class="skill-category">
+        <div class="skills-box">
             <h3>Professional & Interpersonal Skills</h3>
             <div class="skill-list">
                 <span class="skill-tag">Problem-Solving</span>
@@ -311,6 +311,69 @@
         </div>
     </div>
 </section>
+<style>
+.skills-flexgrid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    padding-bottom: 2rem;
+}
+.skills-box {
+    width: 90vw;
+    max-width: 1600px;
+    background: var(--primary-black);
+    border: 4px solid var(--text-white);
+    border-radius: 24px;
+    margin: 0 auto;
+    padding: 1.6rem 2.2rem 1.6rem 2.2rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.skills-box h3 {
+    font-size: 1.45rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 1px;
+    text-align: center;
+    font-weight: 900;
+    color: var(--text-white);
+}
+.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.skill-tag {
+    background: var(--primary-black);
+    color: var(--text-white);
+    padding: 0.7rem 1.6rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--text-white);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    transition: all 0.3s;
+    cursor: default;
+    text-align: center;
+    white-space: nowrap;
+}
+.skill-tag:hover {
+    background: var(--text-white);
+    color: var(--primary-black);
+}
+@media (max-width: 1000px) {
+    .skills-box { width: 97vw; max-width: 100vw; padding: 1rem 0.7rem;}
+    .skill-tag { font-size: 0.92rem; padding: 0.55rem 0.9rem;}
+}
+</style>
 
 
     <!-- Contact Section -->
@@ -366,5 +429,3 @@
     </script>
 </body>
 </html>
-
-
