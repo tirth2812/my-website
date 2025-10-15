@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tirth Patel - Embedded Systems Engineer</title>
+    <!-- Load Inter font family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-black: #000000;
+            --dark-gray: #1a1a1a;
+            --light-gray: #f0f0f0;
+            --text-white: #ffffff;
+            --text-light: #e0e0e0;
+            --accent: #ffffff;
+        }
+
+        body {
+            /* Now using Inter via the link tag above */
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--primary-black);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Using a clean black background */
+        }
+
+        /* Interactive Background Glow */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Navbar */
+        nav {
+            background: var(--primary-black);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--text-white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--text-white);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-white);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-links a:hover {
+            border-bottom: 2px solid var(--text-white);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: var(--primary-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-white);
+            animation: slideDown 1s ease-out;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-white);
+            margin-bottom: 3rem;
+            animation: slideUp 1.2s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            border: 3px solid var(--text-white);
+            background: transparent;
+            color: var(--text-white);
+            text-decoration: none;
+            border-radius: 0;
+            transition: all 0.3s;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background: var(--text-white);
+            color: var(--primary-black);
+            transform: scale(1.05);
+        }
+
+        .btn-filled {
+            background: var(--text-white);
+            color: var(--primary-black);
+            border-color: var(--text-white);
+        }
+
+        .btn-filled:hover {
+            background: var(--primary-black);
+            color: var(--text-white);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        h2 {
+            font-size: 3.5rem;
+            color: var(--text-white);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 2rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: var(--text-white);
+            border-radius: 0;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--primary-black);
+            border-radius: 0;
+            padding: 4rem;
+            border: 3px solid var(--text-white);
+            backdrop-filter: blur(10px);
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        /* Education & Experience Items */
+        .edu-item, .experience-item {
+            background: var(--primary-black);
+            padding: 3rem;
+            border-radius: 0;
+            margin-bottom: 2.5rem;
+            border: 3px solid var(--text-white);
+            transition: all 0.3s;
+        }
+        
+        .edu-item:hover, .experience-item:hover {
+            transform: translateX(15px);
+            border-color: var(--text-white);
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+        }
+
+        .edu-item h3, .experience-item h3 {
+            color: var(--text-white);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+        
+        .edu-item .institution, .experience-item .company {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .edu-item .duration, .experience-item .duration {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .edu-item ul, .experience-item ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .edu-item li, .experience-item li {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+            position: relative;
+        }
+        
+        .edu-item li::before, .experience-item li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--text-white);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: var(--primary-black);
+            border-radius: 0;
+            padding: 3rem;
+            border: 3px solid var(--text-white);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--text-white);
+            box-shadow: 0 30px 60px rgba(255, 255, 255, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.05);
+        }
+
+        .project-card h3 {
+            font-size: 1.8rem;
+            color: var(--text-white);
+            margin-bottom: 1rem;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-tech {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 0.5px;
+        }
+
+        .project-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-features li {
+            color: var(--text-light);
+            padding-left: 2rem;
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+
+        .project-features li::before {
+            content: '▪';
+            position: absolute;
+            left: 0;
+            color: var(--text-white);
+            font-weight: bold;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-links a {
+            color: var(--text-white);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            transition: all 0.3s;
+            font-weight: 700;
+            border: 2px solid var(--text-white);
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem; /* Slightly smaller for project cards */
+        }
+
+        .project-links a:hover {
+            background: var(--text-white);
+            color: var(--primary-black);
+        }
+        
+        .project-links .btn-demo {
+            background: var(--text-white);
+            color: var(--primary-black);
+        }
+        
+        .project-links .btn-demo:hover {
+            background: var(--primary-black);
+            color: var(--text-white);
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--primary-black);
+            padding: 3rem;
+            border-radius: 0;
+            border: 3px solid var(--text-white);
+            transition: all 0.3s;
+        }
+
+        .skill-category:hover {
+            border-color: var(--text-white);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.1), inset 0 0 15px rgba(255, 255, 255, 0.03);
+        }
+
+        .skill-category h3 {
+            color: var(--text-white);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill-tag {
+            background: var(--primary-black);
+            color: var(--text-white);
+            padding: 0.7rem 1.3rem;
+            border-radius: 0;
+            border: 2px solid var(--text-white);
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            font-weight: 700;
+        }
+
+        .skill-tag:hover {
+            background: var(--text-white);
+            color: var(--primary-black);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--primary-black);
+            text-align: center;
+            padding: 5rem 3rem;
+            border-radius: 0;
+            border: 3px solid var(--text-white);
+        }
+
+        .contact-section h2 {
+            margin-bottom: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-white);
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--text-white);
+        }
+
+        .contact-item a {
+            color: var(--text-white);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 700;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .social-links a {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-black);
+            border: 3px solid var(--text-white);
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-white);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 2rem;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.1);
+            background: var(--text-white);
+            color: var(--primary-black);
+        }
+
+        .contact-form {
+            background: var(--primary-black);
+            padding: 1rem; 
+            border: 3px solid var(--text-white);
+            margin-top: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center; /* Center the new button/content */
+        }
+
+        .contact-form iframe {
+            width: 100%; 
+            min-height: 700px; 
+            border: none;
+            background: var(--primary-black); 
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-black);
+            padding: 2rem;
+            text-align: center;
+            border-top: 3px solid var(--text-white);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            .about {
+                padding: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .nav-links {
+                display: none; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <!-- Added Education link to Navbar -->
+        <a href="#" class="logo">⚡ TIRTH PATEL</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#education">Education</a></li> 
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>TIRTH PATEL</h1>
+            <p>Embedded Systems | Firmware Development | Electronics Hardware</p>
+            <p class="hero-subtitle">
+                Designing intelligent systems where firmware meets hardware
+            </p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-filled">Explore My Work</a>
+                <a href="#contact" class="btn">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about">
+            <p>
+                My name is Tirth Patel, and I'm currently pursuing my Master's in **Electrical and Electronics Engineering** at California State Polytechnic University, Pomona. I am deeply passionate about **embedded systems, firmware design, and real-time hardware-software integration**. My core expertise lies in **C, C++, Verilog, and Assembly**, with a strong foundation in protocols like **SPI, I2C, UART**, RTOS fundamentals, and Computer Architecture.
+            </p>
+            <p>
+                During my undergraduate studies, I led a team that secured **₹73,000 in government funding** for a smart-vehicle startup project, where we developed a safety-focused embedded system from concept to prototype, strengthening my technical and project management skills.
+            </p>
+            <p>
+                I am currently working as a **Systems Engineer** in the **Northrop Grumman Collaboration Project** at Cal Poly Pomona. My responsibilities include mission planning, model-based system design, and technical documentation for autonomous systems, ensuring seamless hardware-software coordination.
+            </p>
+            <p>
+                Previously, I completed two Embedded Software Development internships at **Inoweave**, focusing on firmware design, system validation, and real-time interface development, and a Hardware Testing internship at **Nexinnovation**, where I focused on diagnostics and quality assurance for embedded prototypes.
+            </p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <h3>🚗 Smart Vehicle Auth System</h3>
+                <span class="project-tech">STM32 | C/C++ | RFID (SPI) | Fingerprint (UART) | GSM/GPS (UART) | Real-time Relay Control</span>
+                <p class="project-description">
+                    SafeDrive: An advanced driver verification system that prevents unauthorized vehicle operation through multi-layer authentication and provides real-time emergency alerts.
+                </p>
+                <ul class="project-features">
+                    <li>**Secured ₹73,000 in SSIP Government Funding** as the Team Project Lead.</li>
+                    <li>Implemented **Multi-Factor Authentication** using SPI-based RFID and UART-based biometric fingerprint verification.</li>
+                    <li>Designed the **hardware integration and physical assembly** as well as power supply regulation and relay isolation for ignition control.</li>
+                    <li>Integrated GSM/GPS modules to send **real-time location alerts** upon vehicle impact detection.</li>
+                </ul>
+                <div class="project-links">
+                    <a href="https://github.com/tirth2812/driving_licence_controlled_smart_vehicle" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="#" class="btn-demo" onclick="alert('Demo/Video link goes here! This is crucial for showing off physical projects.'); return false;">
+                        <i class="fas fa-video"></i> View Demo
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <h3>🔥 Autoclave Heater Controller</h3>
+                <span class="project-tech">Nuvoton Mini51 MCU | Embedded C | ADC | PWM | I2C EEPROM | State Machine</span>
+                <p class="project-description">
+                    Industrial-grade temperature control unit for lab sterilizers with closed-loop feedback control and persistent memory storage, achieving precise ±1°C calibration accuracy.
+                </p>
+                <ul class="project-features">
+                    <li>Developed the firmware logic for a reliable **±1°C calibration accurate** temperature control system.</li>
+                    <li>Implemented **closed-loop feedback control** using ADC-monitored temperature and PWM-controlled relay switching for heater management.</li>
+                    <li>Used **I2C EEPROM (AT24C04)** to ensure non-volatile persistence of operational settings across power cycles.</li>
+                    <li>Designed a state machine for menu navigation and debounced keypad input handling.</li>
+                </ul>
+                <div class="project-links">
+                    <a href="https://github.com/tirth2812/Heater_controller" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="#" class="btn-demo" onclick="alert('Demo/Video link goes here! This is crucial for showing off physical projects.'); return false;">
+                        <i class="fas fa-video"></i> View Demo
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <h3>⚡ Configurable Pulse Generator</h3>
+                <span class="project-tech">Nuvoton M0518 MCU | Embedded C | Timer Interrupts | I2C EEPROM | State Machine</span>
+                <p class="project-description">
+                    A precise test signal simulation tool providing three independent, configurable pulse output channels (P, M, K) for hardware diagnostics and lab testing.
+                </p>
+                <ul class="project-features">
+                    <li>Implemented **Timer Interrupt-driven** pulse generation for high-precision, square-wave frequency output.</li>
+                    <li>Created a **State-Machine-based** menu system to allow users to configure independent RPM/frequency settings.</li>
+                    <li>Utilized **I2C EEPROM** for persistent storage of all three channel configurations.</li>
+                    <li>Output validated using an oscilloscope for high-accuracy timing control on GPIO pins.</li>
+                </ul>
+                <div class="project-links">
+                    <a href="https://github.com/tirth2812/Pulse_generator" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="#" class="btn-demo" onclick="alert('Demo/Video link goes here! This is crucial for showing off physical projects.'); return false;">
+                        <i class="fas fa-video"></i> View Demo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Programming Languages</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">C</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">Verilog</span>
+                    <span class="skill-tag">Assembly</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Microcontrollers & Platforms</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">STM32 Discovery/Nucleo</span>
+                    <span class="skill-tag">Nuvoton</span>
+                    <span class="skill-tag">Arduino</span>
+                    <span class="skill-tag">Raspberry Pi</span>
+                    <span class="skill-tag">ARM Cortex</span>
+                    <span class="skill-tag">FPGA/CPLD</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Embedded Systems & RTOS</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">GPIO</span>
+                    <span class="skill-tag">PWM</span>
+                    <span class="skill-tag">ADC/DAC</span>
+                    <span class="skill-tag">I2C</span>
+                    <span class="skill-tag">SPI</span>
+                    <span class="skill-tag">UART</span>
+                    <span class="skill-tag">EEPROM/Flash</span>
+                    <span class="skill-tag">RTOS (FreeRTOS)</span>
+                    <span class="skill-tag">System Design</span>
+                    <span class="skill-tag">Low-Level Debugging</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Tools & Methodologies</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Keil uVision</span>
+                    <span class="skill-tag">Xilinx Vivado</span>
+                    <span class="skill-tag">Git/Version Control</span>
+                    <span class="skill-tag">MATLAB/Simulink</span>
+                    <span class="skill-tag">Oscilloscope</span>
+                    <span class="skill-tag">Signal Analysis</span>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h3>Core Strengths</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Real-Time Control</span>
+                    <span class="skill-tag">Low-Level Optimization</span>
+                    <span class="skill-tag">Algorithmic Thinking</span>
+                    <span class="skill-tag">Hardware-Software Integration</span>
+                    <span class="skill-tag">Analytical Skills</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3>Workplace Competencies</h3>
+                <div class="skill-list">
+                    <span class="skill-tag">Team Collaboration</span>
+                    <span class="skill-tag">Professionalism</span>
+                    <span class="skill-tag">Time Management</span>
+                    <span class="skill-tag">Technical Communication</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2>Education</h2>
+
+        <div class="edu-item">
+            <h3>Master of Science in Electrical & Electronics Engineering</h3>
+            <div class="institution">California State Polytechnic University, Pomona</div>
+            <div class="duration">Aug 2024 – Expected May 2026</div>
+            <ul>
+                <li>Specialization in **Embedded Systems and Computer Engineering**.</li>
+                <li>Relevant Coursework: Advanced Embedded Systems, Real-Time Operating Systems (RTOS), Computer Architecture, Digital Signal Processing.</li>
+                <li>Current GPA: 3.8/4.0.</li>
+            </ul>
+        </div>
+
+        <div class="edu-item">
+            <h3>Bachelor of Technology in Electrical Engineering</h3>
+            <div class="institution">Government Engineering College, Modasa (Gujarat Technological University)</div>
+            <div class="duration">Aug 2019 – May 2023</div>
+            <ul>
+                <li>Graduated with Honors.</li>
+                <li>Awarded **₹73,000 in SSIP Government Funding** for the Smart Vehicle Authentication System project.</li>
+                <li>Final Year Project focused on embedded real-time control systems for industrial applications.</li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>Professional Experience</h2>
+
+        <div class="experience-item">
+            <h3>System Engineer</h3>
+            <div class="company">Northrop Grumman Collaboration Project</div>
+            <div class="duration">Aug 2024 – Present</div>
+            <ul>
+                <li>Derived and documented system-level requirements for Unmanned Ground Vehicle (UGV) systems.</li>
+                <li>Created and presented models/diagrams supporting the System Requirements Review (SRR) and Preliminary Design Review (PDR).</li>
+                <li>Prepared technical documentation aligned with professional engineering standards for autonomous system design.</li>
+                <li>Coordinated with Electrical and Software teams to align hardware and software work with core mission objectives.</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <h3>Embedded Software Developer (Internships)</h3>
+            <div class="company">Inoweave</div>
+            <div class="duration">Jan 2024 – Jun 2024</div>
+            <ul>
+                <li>Programmed STM32 and Nuvoton MCUs with focus on **Test-Driven Development (TDD)** and CI/CD practices.</li>
+                <li>Designed complex pulse-generation and PID control logic, validated with automated testing and structured debugging.</li>
+                <li>Optimized real-time graphical displays and interface communication, improving system responsiveness by approximately **50%**.</li>
+                <li>Integrated I²C and UART protocols for reliable, high-speed device-to-device interfacing.</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <h3>Hardware Testing & Assembly (Internship)</h3>
+            <div class="company">Nexinnovation</div>
+            <div class="duration">Jun 2023 – Jul 2023</div>
+            <ul>
+                <li>Executed comprehensive hardware testing on prototype boards using oscilloscopes and signal analyzers.</li>
+                <li>Improved prototype reliability, contributing to a **20% reduction in failure rates** through diagnostic procedures.</li>
+                <li>Enhanced assembly and completion efficiency by **15%** while consistently meeting strict production schedules.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-section">
+            <h2>Let's Connect</h2>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Pomona, CA, USA</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:tirth.p2812@gmail.com">tirth.p2812@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+19097620503">+1 (909) 762-0503</a>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <a href="https://github.com/tirth2812" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/tirth-patel-33b167285" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+
+            <div class="contact-form">
+                <h3 style="color: var(--text-white); margin-bottom: 1.5rem; font-weight: 800; text-align: center;">Send Me a Message</h3>
+                
+                <!-- NEW: Direct link to the Google Form to bypass iframe issues -->
+                <p style="color: var(--text-light); margin-bottom: 2rem;">
+                    If the embedded form is not visible, please use the button below to open the contact form in a new tab.
+                </p>
+                <a 
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSdOKIlFQFFHpzUNCHuoOBAqm6ljPn01ZrFawd0f-IewQ8ckWg/viewform" 
+                    target="_blank" 
+                    class="btn btn-filled"
+                    style="width: auto; padding: 10px 20px; font-size: 0.9rem;">
+                    Open Contact Form in New Tab
+                </a>
+                
+                <hr style="border-color: #333; margin: 30px 0;">
+                
+                <!-- Google Form Iframe Integration (Commented out in case it fails, but kept the code for visibility) -->
+                <p style="color: var(--text-light); margin-bottom: 1rem;">
+                    *Attempting to load embedded form (may be blocked by some browsers):*
+                </p>
+                <iframe 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSdOKIlFQFFHpzUNCHuoOBAqm6ljPn01ZrFawd0f-IewQ8ckWg/viewform?embedded=true" 
+                    width="100%" 
+                    height="700" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0">
+                    Loading…
+                </iframe>
+                <!-- End Google Form -->
+
+                <p style="color: var(--text-light); margin-top: 1rem; text-align: center; font-size: 0.9rem;">
+                    Powered by Google Forms • Submissions saved directly to your Google Sheet
+                </p>
+            </div>
+
+            <p style="color: var(--text-light); margin-top: 2rem; font-size: 1.1rem;">
+                Always open to collaborate on embedded systems and innovative hardware projects!
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p style="font-weight: 700;">Every experiment leads to growth — thank you for visiting! 🌱🔬</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">© 2025 Tirth Patel. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        // Interactive background glow effect
+        document.body.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth * 100;
+            const y = e.clientY / window.innerHeight * 100;
+            document.documentElement.style.setProperty('--mouse-x', `${x}%`);
+            document.documentElement.style.setProperty('--mouse-y', `${y}%`);
+        });
+
+    </script>
+</body>
+</html>
