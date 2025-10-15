@@ -1,521 +1,513 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tirth Patel - Embedded Systems Engineer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tirth Patel - Embedded Systems Engineer</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --primary-black: #000000;
+        --dark-gray: #1a1a1a;
+        --light-gray: #f0f0f0;
+        --text-white: #ffffff;
+        --text-light: #e0e0e0;
+        --accent: #ffffff;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: var(--primary-black);
+        color: var(--text-white);
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: repeating-linear-gradient(
+            45deg,
+            #000000 0px,
+            #000000 20px,
+            #1a1a1a 20px,
+            #1a1a1a 40px
+        );
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    nav {
+        background: var(--primary-black);
+        padding: 1.5rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 3px solid var(--text-white);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        backdrop-filter: blur(10px);
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--text-white);
+        text-decoration: none;
+        letter-spacing: 2px;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+    }
+
+    .nav-links a {
+        color: var(--text-white);
+        text-decoration: none;
+        transition: all 0.3s;
+        font-weight: 600;
+        border-bottom: 2px solid transparent;
+    }
+
+    .nav-links a:hover {
+        border-bottom: 2px solid var(--text-white);
+    }
+
+    .hero {
+        min-height: 100vh;
+        background: var(--primary-black);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        padding: 2rem;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 900px;
+    }
+
+    .hero h1 {
+        font-size: 5rem;
+        margin-bottom: 1.5rem;
+        color: var(--text-white);
+        animation: slideDown 1s ease-out;
+        font-weight: 900;
+        letter-spacing: 3px;
+    }
+
+    .hero p {
+        font-size: 1.3rem;
+        color: var(--text-light);
+        margin-bottom: 1rem;
+        animation: slideUp 1s ease-out;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+        color: var(--text-white);
+        margin-bottom: 3rem;
+        animation: slideUp 1.2s ease-out;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-40px);
         }
-        :root {
-            --primary-black: #000000;
-            --dark-gray: #1a1a1a;
-            --light-gray: #f0f0f0;
-            --text-white: #ffffff;
-            --text-light: #e0e0e0;
-            --accent: #ffffff;
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--primary-black);
-            color: var(--text-white);
-            line-height: 1.6;
-            overflow-x: hidden;
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(40px);
         }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                45deg,
-                #000000 0px,
-                #000000 20px,
-                #1a1a1a 20px,
-                #1a1a1a 40px
-            );
-            pointer-events: none;
-            z-index: -1;
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 255, 255, 0.03) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: -1;
-        }
-        #circuitCanvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-        nav {
-            background: var(--primary-black);
-            padding: 1.5rem 2rem;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 3px solid var(--text-white);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(10px);
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--text-white);
-            text-decoration: none;
-            letter-spacing: 2px;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        .nav-links a {
-            color: var(--text-white);
-            text-decoration: none;
-            transition: all 0.3s;
-            font-weight: 600;
-            border-bottom: 2px solid transparent;
-        }
-        .nav-links a:hover {
-            border-bottom: 2px solid var(--text-white);
-        }
-        .hero {
-            min-height: 100vh;
-            background: var(--primary-black);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            padding: 2rem;
-        }
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-        }
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 2rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 16px 40px;
+        border: 3px solid var(--text-white);
+        background: transparent;
+        color: var(--text-white);
+        text-decoration: none;
+        border-radius: 0;
+        transition: all 0.3s;
+        font-weight: 700;
+        cursor: pointer;
+        font-size: 1rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .btn:hover {
+        background: var(--text-white);
+        color: var(--primary-black);
+        transform: scale(1.05);
+    }
+
+    .btn-filled {
+        background: var(--text-white);
+        color: var(--primary-black);
+        border-color: var(--text-white);
+    }
+
+    .btn-filled:hover {
+        background: var(--primary-black);
+        color: var(--text-white);
+    }
+
+    section {
+        padding: 6rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    h2 {
+        font-size: 3.5rem;
+        color: var(--text-white);
+        margin-bottom: 3rem;
+        text-align: center;
+        position: relative;
+        padding-bottom: 2rem;
+        font-weight: 900;
+        letter-spacing: 2px;
+    }
+
+    h2::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px;
+        height: 4px;
+        background: var(--text-white);
+        border-radius: 0;
+    }
+
+    .about {
+        background: var(--primary-black);
+        border-radius: 0;
+        padding: 4rem;
+        border: 3px solid var(--text-white);
+        backdrop-filter: blur(10px);
+    }
+
+    .about p {
+        font-size: 1.1rem;
+        line-height: 2;
+        color: var(--text-light);
+        margin-bottom: 2rem;
+    }
+
+    .projects-grid {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 6rem 2rem;
+    }
+
+    .project-box {
+        flex: 1 1 300px;
+        border: 3px solid var(--text-white);
+        background: var(--primary-black);
+        color: var(--text-white);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 900;
+        letter-spacing: 2px;
+        text-align: center;
+        padding: 4rem 1rem;
+        transition: background 0.3s, color 0.3s;
+        text-decoration: none;
+    }
+
+    .project-box:hover {
+        background: var(--text-white);
+        color: var(--primary-black);
+    }
+
+    .skills-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+    }
+
+    .skill-category {
+        background: var(--primary-black);
+        padding: 3rem;
+        border-radius: 0;
+        border: 3px solid var(--text-white);
+        transition: all 0.3s;
+    }
+
+    .skill-category:hover {
+        border-color: var(--text-white);
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(255, 255, 255, 0.1), inset 0 0 15px rgba(255, 255, 255, 0.03);
+    }
+
+    .skill-category h3 {
+        color: var(--text-white);
+        margin-bottom: 1.5rem;
+        font-size: 1.3rem;
+        font-weight: 800;
+        letter-spacing: 1px;
+    }
+
+    .skill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .skill-tag {
+        background: var(--primary-black);
+        color: var(--text-white);
+        padding: 0.7rem 1.3rem;
+        border-radius: 0;
+        border: 2px solid var(--text-white);
+        font-size: 0.85rem;
+        transition: all 0.3s;
+        font-weight: 700;
+    }
+
+    .skill-tag:hover {
+        background: var(--text-white);
+        color: var(--primary-black);
+    }
+
+    .experience-item {
+        background: var(--primary-black);
+        padding: 3rem;
+        border-radius: 0;
+        margin-bottom: 2.5rem;
+        border: 3px solid var(--text-white);
+        transition: all 0.3s;
+    }
+
+    .experience-item:hover {
+        transform: translateX(15px);
+        border-color: var(--text-white);
+        box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+    }
+
+    .experience-item h3 {
+        color: var(--text-white);
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        font-weight: 800;
+    }
+
+    .experience-item .company {
+        color: var(--text-light);
+        font-size: 0.95rem;
+        letter-spacing: 0.5px;
+    }
+
+    .experience-item .duration {
+        color: var(--text-light);
+        font-size: 0.85rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .experience-item ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .experience-item li {
+        color: var(--text-light);
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+        position: relative;
+    }
+
+    .experience-item li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--text-white);
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .contact-section {
+        background: var(--primary-black);
+        text-align: center;
+        padding: 5rem 3rem;
+        border-radius: 0;
+        border: 3px solid var(--text-white);
+    }
+
+    .contact-section h2 {
+        margin-bottom: 3rem;
+    }
+
+    .contact-info {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: var(--text-white);
+    }
+
+    .contact-item i {
+        font-size: 1.5rem;
+        color: var(--text-white);
+    }
+
+    .contact-item a {
+        color: var(--text-white);
+        text-decoration: none;
+        transition: all 0.3s;
+        font-weight: 700;
+    }
+
+    .contact-item a:hover {
+        text-decoration: underline;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .social-links a {
+        width: 60px;
+        height: 60px;
+        background: var(--primary-black);
+        border: 3px solid var(--text-white);
+        border-radius: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-white);
+        text-decoration: none;
+        transition: all 0.3s;
+        font-size: 2rem;
+    }
+
+    .google-form-embed {
+        max-width: 640px;
+        margin: 0 auto;
+    }
+
+    .google-form-embed iframe {
+        width: 100%;
+    }
+
+    footer {
+        background: var(--primary-black);
+        text-align: center;
+        padding: 3rem 2rem;
+        border-top: 3px solid var(--text-white);
+        color: var(--text-light);
+    }
+
+    @media (max-width: 768px) {
         .hero h1 {
-            font-size: 5rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-white);
-            animation: slideDown 1s ease-out;
-            font-weight: 900;
-            letter-spacing: 3px;
+            font-size: 3rem;
         }
-        .hero p {
-            font-size: 1.3rem;
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            animation: slideUp 1s ease-out;
-        }
-        .hero-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-white);
-            margin-bottom: 3rem;
-            animation: slideUp 1.2s ease-out;
-        }
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .cta-buttons {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .btn {
-            padding: 16px 40px;
-            border: 3px solid var(--text-white);
-            background: transparent;
-            color: var(--text-white);
-            text-decoration: none;
-            border-radius: 0;
-            transition: all 0.3s;
-            font-weight: 700;
-            cursor: pointer;
-            font-size: 1rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        .btn:hover {
-            background: var(--text-white);
-            color: var(--primary-black);
-            transform: scale(1.05);
-        }
-        .btn-filled {
-            background: var(--text-white);
-            color: var(--primary-black);
-            border-color: var(--text-white);
-        }
-        .btn-filled:hover {
-            background: var(--primary-black);
-            color: var(--text-white);
-        }
-        section {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-        }
+
         h2 {
-            font-size: 3.5rem;
-            color: var(--text-white);
-            margin-bottom: 3rem;
-            text-align: center;
-            position: relative;
-            padding-bottom: 2rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-        }
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 4px;
-            background: var(--text-white);
-            border-radius: 0;
-        }
-        .about {
-            background: var(--primary-black);
-            border-radius: 0;
-            padding: 4rem;
-            border: 3px solid var(--text-white);
-            backdrop-filter: blur(10px);
-        }
-        .about p {
-            font-size: 1.1rem;
-            line-height: 2;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-        }
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 2.5rem;
-        }
-        .project-card {
-            background: var(--primary-black);
-            border-radius: 0;
-            padding: 3rem;
-            border: 3px solid var(--text-white);
-            transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
-        }
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent 0px,
-                transparent 10px,
-                rgba(255, 255, 255, 0.05) 10px,
-                rgba(255, 255, 255, 0.05) 20px
-            );
-            pointer-events: none;
-        }
-        .project-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            border-color: var(--text-white);
-            box-shadow: 0 30px 60px rgba(255, 255, 255, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.05);
-        }
-        .project-card h3 {
-            font-size: 1.8rem;
-            color: var(--text-white);
-            margin-bottom: 1rem;
-            font-weight: 800;
-            position: relative;
-            z-index: 1;
-        }
-        .project-tech {
-            color: var(--text-light);
-            font-size: 0.85rem;
-            margin-bottom: 1.5rem;
-            display: block;
-            position: relative;
-            z-index: 1;
-            letter-spacing: 0.5px;
-        }
-        .project-description {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-            position: relative;
-            z-index: 1;
-        }
-        .project-features {
-            list-style: none;
-            margin-bottom: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-        .project-features li {
-            color: var(--text-light);
-            padding-left: 2rem;
-            margin-bottom: 0.8rem;
-            position: relative;
-        }
-        .project-features li::before {
-            content: '▪';
-            position: absolute;
-            left: 0;
-            color: var(--text-white);
-            font-weight: bold;
-        }
-        .project-links {
-            display: flex;
-            gap: 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-        .project-links a {
-            color: var(--text-white);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            transition: all 0.3s;
-            font-weight: 700;
-            border: 2px solid var(--text-white);
-            padding: 0.5rem 1rem;
-        }
-        .project-links a:hover {
-            background: var(--text-white);
-            color: var(--primary-black);
-        }
-        .skills-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-        .skill-category {
-            background: var(--primary-black);
-            padding: 3rem;
-            border-radius: 0;
-            border: 3px solid var(--text-white);
-            transition: all 0.3s;
-        }
-        .skill-category:hover {
-            border-color: var(--text-white);
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(255, 255, 255, 0.1), inset 0 0 15px rgba(255, 255, 255, 0.03);
-        }
-        .skill-category h3 {
-            color: var(--text-white);
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-        .skill-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        .skill-tag {
-            background: var(--primary-black);
-            color: var(--text-white);
-            padding: 0.7rem 1.3rem;
-            border-radius: 0;
-            border: 2px solid var(--text-white);
-            font-size: 0.85rem;
-            transition: all 0.3s;
-            font-weight: 700;
-        }
-        .skill-tag:hover {
-            background: var(--text-white);
-            color: var(--primary-black);
-        }
-        .experience-item {
-            background: var(--primary-black);
-            padding: 3rem;
-            border-radius: 0;
-            margin-bottom: 2.5rem;
-            border: 3px solid var(--text-white);
-            transition: all 0.3s;
-        }
-        .experience-item:hover {
-            transform: translateX(15px);
-            border-color: var(--text-white);
-            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
-        }
-        .experience-item h3 {
-            color: var(--text-white);
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            font-weight: 800;
-        }
-        .experience-item .company {
-            color: var(--text-light);
-            font-size: 0.95rem;
-            letter-spacing: 0.5px;
-        }
-        .experience-item .duration {
-            color: var(--text-light);
-            font-size: 0.85rem;
-            margin-bottom: 1.5rem;
-        }
-        .experience-item ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        .experience-item li {
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            padding-left: 2rem;
-            position: relative;
-        }
-        .experience-item li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--text-white);
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        .contact-section {
-            background: var(--primary-black);
-            text-align: center;
-            padding: 5rem 3rem;
-            border-radius: 0;
-            border: 3px solid var(--text-white);
-        }
-        .contact-section h2 {
-            margin-bottom: 3rem;
-        }
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            margin-bottom: 3rem;
-        }
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            color: var(--text-white);
-        }
-        .contact-item i {
-            font-size: 1.5rem;
-            color: var(--text-white);
-        }
-        .contact-item a {
-            color: var(--text-white);
-            text-decoration: none;
-            transition: all 0.3s;
-            font-weight: 700;
-        }
-        .contact-item a:hover {
-            text-decoration: underline;
-        }
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        .social-links a {
-            width: 60px;
-            height: 60px;
-            background: var(--primary-black);
-            border: 3px solid var(--text-white);
-            border-radius: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-white);
-            text-decoration: none;
-            transition: all 0.3s;
             font-size: 2rem;
         }
-        /* Google Form Embed responsiveness */
-        .google-form-embed {
-            max-width: 640px;
-            margin: 0 auto;
+
+        section {
+            padding: 3rem 1rem;
         }
-        .google-form-embed iframe {
+
+        .about {
+            padding: 2rem;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+        }
+
+        .btn {
             width: 100%;
         }
-        footer {
-            background: var(--primary-black);
-            text-align: center;
-            padding: 3rem 2rem;
-            border-top: 3px solid var(--text-white);
-            color: var(--text-light);
+
+        .projects-grid {
+            flex-direction: column;
+            padding: 3rem 1rem;
         }
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            h2 {
-                font-size: 2rem;
-            }
-            section {
-                padding: 3rem 1rem;
-            }
-            .about {
-                padding: 2rem;
-            }
-            .cta-buttons {
-                flex-direction: column;
-            }
-            .btn {
-                width: 100%;
-            }
-            .google-form-embed {
-                max-width: 100%;
-            }
+
+        .project-box {
+            width: 100%;
         }
-    </style>
+
+        .google-form-embed {
+            max-width: 100%;
+        }
+    }
+</style>
 </head>
 <body>
     <!-- Navigation -->
     <nav>
-        <a href="#" class="logo">⚡ TIRTH PATEL</a>
+        <a href="index.html" class="logo">⚡ TIRTH PATEL</a>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
@@ -524,6 +516,7 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
@@ -538,6 +531,7 @@
             </div>
         </div>
     </section>
+
     <!-- About Section -->
     <section id="about">
         <h2>About Me</h2>
@@ -556,132 +550,17 @@
             </p>
         </div>
     </section>
+
     <!-- Projects Section -->
     <section id="projects">
         <h2>Featured Projects</h2>
         <div class="projects-grid">
-            <!-- Project 1 -->
-            <div class="project-card">
-                <h3>🚗 Smart Vehicle Auth System</h3>
-                <span class="project-tech">STM32 Controller | Arduino | C/C++ | RFID (RC522) | R305 Fingerprint | GSM (SIM800L) | GPS Module | Relay Module | LCD 16x2 | SPI | UART | I2C</span>
-                <p class="project-description">
-                    SafeDrive: Advanced driver verification system preventing unauthorized driving through multi-layer authentication including RFID scanning, biometric verification, and emergency GPS/GSM alerts on vehicle impact detection.
-                </p>
-                <ul class="project-features">
-                    <li>RFID-based encrypted driving license scanning using RC522 with SPI protocol</li>
-                    <li>Fingerprint matching authentication via R305 biometric sensor with UART communication</li>
-                    <li>Real-time GPS location capture and GSM-based emergency SMS alerts on accident detection</li>
-                    <li>Relay-based vehicle ignition control triggered after successful multi-factor authentication</li>
-                    <li>LCD 16x2 display with I2C interface for real-time status and user feedback messages</li>
-                </ul>
-                <div style="background: rgba(255,255,255,0.05); padding: 1.5rem; margin: 1.5rem 0; border-left: 3px solid #ffffff;">
-                    <p style="color: var(--text-white); font-weight: 800; margin-bottom: 1rem;">My Role - Hardware Integration & Physical Assembly</p>
-                    <ul class="project-features" style="margin: 0;">
-                        <li>Planned and designed complete connection layout between all modules and STM32 controller</li>
-                        <li>Assembled and soldered entire hardware system with proper PCB layout and pin mapping</li>
-                        <li>Mapped and verified all communication interfaces: SPI (RC522), UART (Fingerprint/GPS/GSM), I2C (LCD)</li>
-                        <li>Implemented reliable 12V to 5V regulated power supply with buck converter and fuse protection</li>
-                        <li>Isolated relay module to prevent reverse current damage to STM32 GPIO pins</li>
-                        <li>Tested each component individually before final system integration and assembly</li>
-                        <li>Separated UART signal lines across GPS, GSM, and fingerprint modules to minimize noise interference</li>
-                        <li>Built hardware infrastructure enabling secure authentication logic execution</li>
-                    </ul>
-                </div>
-                <p style="color: var(--text-white); font-weight: 700; margin-bottom: 1.5rem;">
-                    🏆 ₹73,000 SSIP Government Funding | Led at age 19 | Team Project Lead
-                </p>
-                <div class="project-links">
-                    <a href="https://github.com/tirth2812/driving_licence_controlled_smart_vehicle" target="_blank">
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
-                </div>
-            </div>
-            <!-- Project 2 -->
-            <div class="project-card">
-                <h3>🔥 Autoclave Heater Controller</h3>
-                <span class="project-tech">Nuvoton Mini51 MCU | Embedded C | ADC | PWM | I2C | UART | EEPROM (AT24C04) | 7-Segment Display | Shift Registers (74HC595) | Relay Control | Keypad</span>
-                <p class="project-description">
-                    Industrial-grade temperature control unit for autoclaves and lab sterilizers with closed-loop feedback control, persistent memory storage, and multi-mode operational capabilities achieving ±1°C calibration accuracy.
-                </p>
-                <ul class="project-features">
-                    <li>Real-time ADC-based temperature monitoring with analog sensor integration</li>
-                    <li>PWM-controlled relay switching for heater power management</li>
-                    <li>I2C EEPROM (AT24C04) implementation for non-volatile settings persistence</li>
-                    <li>3-digit 7-Segment display interfaced via 74HC595 shift registers</li>
-                    <li>Debounced 9-key keypad input handling with menu navigation state machine</li>
-                    <li>Open-loop and closed-loop temperature control modes with automatic detection</li>
-                    <li>Software PWM generation and LED status indicators for operational feedback</li>
-                    <li>Safety features: system timeout, overheat protection, and timer-based automation</li>
-                    <li>1ms interrupt-driven main loop for real-time responsiveness</li>
-                </ul>
-                <div class="project-links">
-                    <a href="https://github.com/tirth2812/Heater_controller" target="_blank">
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
-                </div>
-            </div>
-            <!-- Project 3 -->
-            <div class="project-card">
-                <h3>⚡ Pulse Generator</h3>
-                <span class="project-tech">Nuvoton M0518 MCU | Embedded C | Timer Interrupts | GPIO | I2C | EEPROM (AT24C04) | LCD 16x2 | State Machine | PWM | Keypad Interface</span>
-                <p class="project-description">
-                    Configurable pulse generator for test signal simulation with three independent output channels, menu-driven LCD interface, and state-machine-based control logic for oscilloscope-verified precision output.
-                </p>
-                <ul class="project-features">
-                    <li>Three independent pulse output channels (P, M, K) with independent RPM control</li>
-                    <li>Timer1 interrupt-driven pulse generation using square-wave toggling</li>
-                    <li>I2C EEPROM (AT24C04) for persistent RPM configuration storage at multiple addresses</li>
-                    <li>State-machine-based menu system for intuitive user navigation</li>
-                    <li>4-Key user interface (Esc, Up, Down, Enter) with debounced input handling</li>
-                    <li>LCD 16x2 character display for real-time parameter visualization</li>
-                    <li>LED indicators (LED1-3) for output channel status visualization</li>
-                    <li>GPIO-based pulse output on OP3/OP4 pins with precise timing control</li>
-                    <li>Oscilloscope-validated accuracy for lab testing and production diagnostics</li>
-                </ul>
-                <div class="project-links">
-                    <a href="https://github.com/tirth2812/Pulse_generator" target="_blank">
-                        <i class="fab fa-github"></i> GitHub
-                    </a>
-                </div>
-            </div>
+            <a href="project1.html" class="project-box">Smart Vehicle Auth System</a>
+            <a href="project2.html" class="project-box">Autoclave Heater Controller</a>
+            <a href="project3.html" class="project-box">Pulse Generator</a>
         </div>
     </section>
-    <!-- Experience Section -->
-    <section id="experience">
-        <h2>Professional Experience</h2>
-        <div class="experience-item">
-            <h3>System Engineer</h3>
-            <div class="company">Northrop Grumman Collaboration Project</div>
-            <div class="duration">Aug 2025 – Present</div>
-            <ul>
-                <li>Derived system-level requirements for UGV (Unmanned Ground Vehicle) systems</li>
-                <li>Created models and diagrams supporting System Requirements Review (SRR) and Preliminary Design Review (PDR)</li>
-                <li>Prepared technical documentation aligned with Northrop Grumman standards</li>
-                <li>Coordinated with Electrical Team to align work with mission objectives</li>
-            </ul>
-        </div>
-        <div class="experience-item">
-            <h3>Embedded Software Developer</h3>
-            <div class="company">Inoweave</div>
-            <div class="duration">Jan 2024 – Jun 2024</div>
-            <ul>
-                <li>Programmed STM32 and Nuvoton MCUs with TDD and CI/CD practices (±1°C calibration accuracy)</li>
-                <li>Designed pulse-generation logic with automated testing and structured debugging</li>
-                <li>Built real-time graphical displays improving responsiveness by ~50%</li>
-                <li>Integrated I²C and UART protocols for reliable device interfacing</li>
-            </ul>
-        </div>
-        <div class="experience-item">
-            <h3>Hardware Testing & Assembly</h3>
-            <div class="company">Nexinnovation</div>
-            <div class="duration">Jun 2023 – Jul 2023</div>
-            <ul>
-                <li>Executed comprehensive hardware testing using oscilloscopes and signal analyzers</li>
-                <li>Achieved ~20% reduction in failure rates through diagnostic procedures</li>
-                <li>Improved completion efficiency by ~15% while meeting strict schedules</li>
-            </ul>
-        </div>
-    </section>
+
     <!-- Skills Section -->
     <section id="skills">
         <h2>Technical Skills</h2>
@@ -697,6 +576,7 @@
                     <span class="skill-tag">Assembly</span>
                 </div>
             </div>
+
             <div class="skill-category">
                 <h3>Microcontrollers & Platforms</h3>
                 <div class="skill-list">
@@ -708,6 +588,7 @@
                     <span class="skill-tag">ARM Cortex</span>
                 </div>
             </div>
+
             <div class="skill-category">
                 <h3>Embedded Systems & RTOS</h3>
                 <div class="skill-list">
@@ -726,6 +607,7 @@
                     <span class="skill-tag">Debugging</span>
                 </div>
             </div>
+
             <div class="skill-category">
                 <h3>Tools & Software</h3>
                 <div class="skill-list">
@@ -736,6 +618,7 @@
                     <span class="skill-tag">VS Code</span>
                 </div>
             </div>
+
             <div class="skill-category">
                 <h3>Core Strengths</h3>
                 <div class="skill-list">
@@ -746,6 +629,7 @@
                     <span class="skill-tag">Analytical Skills</span>
                 </div>
             </div>
+
             <div class="skill-category">
                 <h3>Workplace Competencies</h3>
                 <div class="skill-list">
@@ -757,10 +641,52 @@
             </div>
         </div>
     </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>Professional Experience</h2>
+
+        <div class="experience-item">
+            <h3>System Engineer</h3>
+            <div class="company">Northrop Grumman Collaboration Project</div>
+            <div class="duration">Aug 2025 – Present</div>
+            <ul>
+                <li>Derived system-level requirements for UGV (Unmanned Ground Vehicle) systems</li>
+                <li>Created models and diagrams supporting System Requirements Review (SRR) and Preliminary Design Review (PDR)</li>
+                <li>Prepared technical documentation aligned with Northrop Grumman standards</li>
+                <li>Coordinated with Electrical Team to align work with mission objectives</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <h3>Embedded Software Developer</h3>
+            <div class="company">Inoweave</div>
+            <div class="duration">Jan 2024 – Jun 2024</div>
+            <ul>
+                <li>Programmed STM32 and Nuvoton MCUs with TDD and CI/CD practices (±1°C calibration accuracy)</li>
+                <li>Designed pulse-generation logic with automated testing and structured debugging</li>
+                <li>Built real-time graphical displays improving responsiveness by ~50%</li>
+                <li>Integrated I²C and UART protocols for reliable device interfacing</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <h3>Hardware Testing & Assembly</h3>
+            <div class="company">Nexinnovation</div>
+            <div class="duration">Jun 2023 – Jul 2023</div>
+            <ul>
+                <li>Executed comprehensive hardware testing using oscilloscopes and signal analyzers</li>
+                <li>Achieved ~20% reduction in failure rates through diagnostic procedures</li>
+                <li>Improved completion efficiency by ~15% while meeting strict schedules</li>
+            </ul>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact">
         <div class="contact-section">
             <h2>Let's Connect</h2>
+
             <div class="contact-info">
                 <div class="contact-item">
                     <i class="fas fa-map-marker-alt"></i>
@@ -775,6 +701,7 @@
                     <a href="tel:+19097620503">+1 (909) 762-0503</a>
                 </div>
             </div>
+
             <div class="social-links">
                 <a href="https://github.com/tirth2812" target="_blank" title="GitHub">
                     <i class="fab fa-github"></i>
@@ -783,19 +710,23 @@
                     <i class="fab fa-linkedin"></i>
                 </a>
             </div>
-            <!-- Google Form Embed -->
+
             <div class="google-form-embed">
                 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdOKIlFQFFHpzUNCHuoOBAqm6ljPn01ZrFawd0f-IewQ8ckWg/viewform?embedded=true" width="100%" height="821" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
             </div>
+
             <p style="color: var(--text-light); margin-top: 2rem; font-size: 1.1rem;">
                 Always open to collaborate on embedded systems and innovative hardware projects!
             </p>
         </div>
     </section>
+
+    <!-- Footer -->
     <footer>
         <p style="font-weight: 700;">Every experiment leads to growth — thank you for visiting! 🌱🔬</p>
         <p style="margin-top: 1rem; font-size: 0.9rem;">© 2025 Tirth Patel. All rights reserved.</p>
     </footer>
+
     <script>
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -807,19 +738,6 @@
                 }
             });
         });
-        // Download website code
-        function downloadWebsite() {
-            const element = document.documentElement;
-            const html = element.outerHTML;
-            const blob = new Blob([html], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'index.html';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
     </script>
 </body>
 </html>
