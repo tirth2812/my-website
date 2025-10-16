@@ -29,12 +29,33 @@
     font-size: 2.5rem;
     margin-bottom: 1rem;
   }
+  h2 {
+    margin-top: 2.5rem;
+    font-size: 2rem;
+    font-weight: 800;
+  }
   p, ul {
     font-size: 1.1rem;
     line-height: 1.8;
   }
   ul {
     margin-top: 1rem;
+  }
+  .project-image {
+    width: 100%;
+    max-width: 600px;
+    margin: 2.5rem auto 0 auto;
+    display: block;
+    border-radius: 15px;
+    box-shadow: 0 6px 32px #000a;
+    border: 2.5px solid #222;
+    background: #111;
+  }
+  .img-caption {
+    text-align: center;
+    font-size: 1.04rem;
+    margin: 0.5em 0 1.8em 0;
+    color: #ccc;
   }
 </style>
 </head>
@@ -72,5 +93,9 @@
     <li>Built the keypad input handler to allow digit-by-digit RPM entry and menu navigation.</li>
     <li>Assembled and tested the complete system independently, validating functionality with LEDs, LCD feedback, and oscilloscope pulse measurements.</li>
   </ul>
+  
+  <!-- Project image at the END -->
+  <img src="module.jpg" alt="Pulse Generator Module" class="project-image">
+  <div class="img-caption">Pulse Generator Hardware/Module</div>
 </body>
 </html>
