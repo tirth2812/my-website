@@ -29,6 +29,11 @@
     font-size: 2.5rem;
     margin-bottom: 1rem;
   }
+  h2 {
+    margin-top: 2.5rem;
+    font-size: 2rem;
+    font-weight: 800;
+  }
   p, ul {
     font-size: 1.1rem;
     line-height: 1.8;
@@ -36,11 +41,27 @@
   ul {
     margin-top: 1rem;
   }
+  .project-image {
+    width: 100%;
+    max-width: 850px;
+    margin: 2.5rem auto 0 auto;
+    display: block;
+    border-radius: 15px;
+    box-shadow: 0 6px 32px #000a;
+    border: 2.5px solid #222;
+    background: #111;
+  }
+  .img-caption {
+    text-align: center;
+    font-size: 1.04rem;
+    margin: 0.5em 0 1.8em 0;
+    color: #ccc;
+  }
 </style>
 </head>
 <body>
   <a href="index.html" class="back-link">← Back to Projects</a>
-  <h1>Driving Licence Controlled Smart Vehicle</h1>
+  <h1>Driving Licence Controlled Smart Vehicle – Multi-Factor Driver Authentication System (MFDAS)</h1>
   <p><strong>Duration:</strong> Jun 2022 – Jun 2024</p>
   <p><strong>Repo:</strong> <a href="https://github.com/tirth2812/driving_licence_controlled_smart_vehicle" target="_blank" style="color: #00aaff;">github.com/tirth2812/driving_licence_controlled_smart_vehicle</a></p>
 
@@ -65,5 +86,11 @@
     <li>Mapped and verified all communication protocols (SPI for RFID, UART for fingerprint/GSM/GPS, I²C for LCD) and tested each device individually before final integration.</li>
     <li>Coordinated dashboard-level hardware fitting, prepared wiring layout, and validated communication across the system.</li>
   </ul>
+
+  <!-- Project images at the END -->
+  <img src="Vehicle_Accident_Response_Flowchart (1).jpg" alt="Vehicle Accident Response Flowchart" class="project-image">
+  <div class="img-caption">Accident Detection and Response Flowchart</div>
+  <img src="Driver_Licence_Validation_and_Engine_Control (1).jpg" alt="Driver Licence Validation and Engine Control" class="project-image">
+  <div class="img-caption">Driver Licence Validation and Engine Control Logic</div>
 </body>
 </html>
