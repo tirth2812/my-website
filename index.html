@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Tirth Patel - Embedded Systems Engineer</title>
+<title>Tirth Patel - Embedded Software Developer</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -22,13 +22,26 @@
     .nav-links { display: flex; gap: 2rem; list-style: none;}
     .nav-links a { color: var(--text-white); text-decoration: none; transition: all 0.3s; font-weight: 600; border-bottom: 2px solid transparent;}
     .nav-links a:hover { border-bottom: 2px solid var(--text-white);}
-    /* HERO with photo logic */
     .hero { min-height: 100vh; background: var(--primary-black); display: flex; align-items: center; justify-content: center; text-align: left; position: relative; overflow: hidden; padding: 2rem 0;}
     .hero-flex { display: flex; align-items: center; justify-content: center; gap: 2.2rem; max-width: 1000px; margin: auto; width: 95vw;}
     .hero-content { flex: 1.2; min-width: 260px;}
     .hero-photo { flex: 1; display: flex; align-items: center; justify-content: center; min-width: 160px;}
     .hero-photo img { width: 200px; height: 260px; object-fit: cover; border-radius: 14px; border: 3px solid #222; background: #181818; box-shadow: 0 2px 24px #000b; display: block;}
-    .hero h1 { font-size: 4.1rem; margin-bottom: 1.2rem; color: var(--text-white); font-weight: 900; letter-spacing: 3px;}
+    .hero h1 { font-size: 4.1rem; margin-bottom: 0.6rem; color: var(--text-white); font-weight: 900; letter-spacing: 3px;}
+    .hero-title {
+        font-size: 2.3rem;
+        color: #fff;
+        display: inline-block;
+        font-weight: 800;
+        border-radius: 3px;
+        padding: 0.12em 0.7em;
+        margin-bottom: 1.0rem;
+        letter-spacing: 2px;
+        background: transparent;
+        box-shadow: none;
+        border: 3px solid var(--text-white);
+        /* No background, just a subtle border like a badge, not a boxy look. */
+    }
     .hero p { font-size: 1.3rem; color: var(--text-light); margin-bottom: 1rem;}
     .hero-subtitle { font-size: 1.1rem; color: var(--text-white); margin-bottom: 2.3rem;}
     .cta-buttons { display: flex; gap: 2rem; justify-content: flex-start; flex-wrap: wrap;}
@@ -41,6 +54,8 @@
         .hero-content { text-align: center;}
         .cta-buttons { justify-content: center;}
         .hero-photo img { width: 75vw; max-width: 260px; height: 220px; }
+        .hero-title { font-size: 1.5rem; }
+        .hero h1 { font-size: 2.3rem; }
     }
     section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; position: relative;}
     h2 { font-size: 3.5rem; color: var(--text-white); margin-bottom: 3rem; text-align: center; position: relative; padding-bottom: 2rem; font-weight: 900; letter-spacing: 2px;}
@@ -97,6 +112,7 @@
         <div class="hero-flex">
             <div class="hero-content">
                 <h1>TIRTH PATEL</h1>
+                <h2 class="hero-title">Embedded Software Developer</h2>
                 <p>Embedded Systems | Firmware Development | Electronics Hardware</p>
                 <p class="hero-subtitle">
                     Designing intelligent systems where firmware meets hardware
@@ -204,7 +220,7 @@
                     <span class="skill-tag">Nuvoton</span>
                     <span class="skill-tag">Arduino</span>
                     <span class="skill-tag">Raspberry Pi</span>
-		            <span class="skill-tag">ESP32 development board</span>
+                    <span class="skill-tag">ESP32 development board</span>
                 </div>
             </div>
             <div class="skills-box">
